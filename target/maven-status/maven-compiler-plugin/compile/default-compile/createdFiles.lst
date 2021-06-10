@@ -1,0 +1,3 @@
+com\blogapp\web\dto\PostDto.class
+com\blogapp\web\dto\CommentDto.class
+com\blogapp\web\dto\AuthoDto.class

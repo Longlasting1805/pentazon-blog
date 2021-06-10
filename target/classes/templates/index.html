@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PentaBlog</title>
+    <link rel="stylesheet" th:href="@{asset/css/styles/style.css}">
+    <link rel="stylesheet" th:href="@{asset/css/styles/nav.css}">
+    <link rel="stylesheet" th:href="@{asset/css/styles/footer.css}">
+    <link rel="stylesheet" th:href="@{asset/css/styles/blog-post.css}">
+    <link rel="stylesheet" th:href="@{asset/css/styles/home.css}">
+    <link rel="stylesheet" th:href="@{asset/css/animate.css}">
+    <link rel="stylesheet" th:href="@{asset/css/media-query/nav.css}">
+    <link rel="stylesheet" th:href="@{asset/css/media-query/footer.css}">
+    <link rel="stylesheet" th:href="@{asset/css/media-query/blog-post.css}">
+    <link rel="stylesheet" th:href="@{asset/css/media-query/home.css}">
+    <script src="https://kit.fontawesome.com/e2052a1ca7.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="header">
+        <nav th:insert="/fragments.html :: topnav"></nav>
+<
+
+    <!-- Header section -->
+    <header id="back-top">
+        <h1>Hello! This is Penta<Pent></Pent>Blog.</h1>
+        <div class="flag">
+            <p>The </p>
+            <img src="./asset/images/amazone.png">
+            <p>of semicolon africa</p>
+        </div>
+        <a href="#blog">
+            <button>Discover more</button>
+        </a>
+
+    </header>
+    <!-- Header section end -->
+</div>
+
+    <!--    Blog post-->
+    <div id="blog" class="blog-post-container">
+        <div class="blog-post" th:each="post : ${postList}">
+            <a href="./asset/pages/post.html" class="img-container">
+                <img th:src="${post.coverImageUrl}" alt="blog-img">
+            </a>
+            <a href="./asset/pages/post.html" class="post-title" th:text="${post.title}"></a>
+            <div class="blog-post-detail">
+                <a class="user-detail">
+                    <img src="asset/images/author-image1.jpg" class="user-profile">
+                    <a href="" class="user-name">Jen Lopez</a>
+                </a>
+
+                <p class="date-published" th:datetime="${post.dateCreated}"></p>
+
+                <a href="" class="actions">
+                    <p><i class="far fa-comment"></i></p>
+                    <p><span class="comment-count">35</span> Comments</p>
+                </a>
+            </div>
+            <div class="post-content">
+                <p th:text="${post.content}"></p>
+            </div>
+            <a href="/asset/pages/post.html">
+                <button class="view-post">
+                    continue reading
+                </button>
+            </a>
+        </div>
+        <div class="diff"></div>
+
+    <!--   Blog post end-->
+
+    <!-- Footer -->
+   <footer th:insert="fragments.html :: footer"></footer>
+    <!-- Footer -->
+
+    <a href="#back-top" class="go-top" style="display: inline;"><i class="fa fa-angle-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="asset/scripts/app.js"></script>
+</body>
+
+</html>
