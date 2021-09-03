@@ -40,32 +40,24 @@ public class PostController {
 
 
     @PostMapping("/save")
-    public String savePost(@ModelAttribute @Valid PostDto postDto,
-                            BindingResult result, Model model) {
-        log.info("Post dto received --> {}", postDto);
+    public String savePost(@ModelAttribute @Valid PostDto postDto,BindingResult result, Model model) {
 
+        log.info("Post dto received --> {}", postDto);
         if (result.hasErrors()){
             return "create";
         }
-
-
         try {
             postServiceImpl.savePost(postDto);
         } catch (PostObjectIsNullException e) {
             log.info("Exception occured --> {}", e.getMessage());
         } catch (DataIntegrityViolationException dx) {
             log.info("constraint exception occurred --> {}", dx.getMessage());
-            model.addAttribute("error", true);
-            model.addAttribute("errorMessage", "title not accepted, already exists.");
+            model.addAttribute("error", dx.getMessage());
+            model.addAttribute("errorMessage", dx.getMessage());
 
             return "create";
         }
         return "redirect:/posts/";
-    }
-    @ModelAttribute
-    public void createPostModel(Model model){
-        model.addAttribute("postDto", new PostDto());
-
     }
 
     @GetMapping("/fullPost/{postId}")

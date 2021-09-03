@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
-    <link rel="stylesheet" href="../css/styles/nav.css">
-    <link rel="stylesheet" href="../css/styles/footer.css">
-    <link rel="stylesheet" href="../css/media-query/footer.css">
-    <link rel="stylesheet" href="../css/media-query/nav.css">
-    <link rel="stylesheet" href="../css/media-query/style.css">
-    <link rel="stylesheet" href="../css/styles/post.css">
-    <link rel="stylesheet" href="../css/styles/blog-post.css">
-    <link rel="stylesheet" href="../css/media-query/post.css">
+    <link rel="stylesheet" th:href="@{asset/css/styles/style.css}">
+    <link rel="stylesheet" th:href="@{asset/css/styles/nav.css}">
+    <link rel="stylesheet" th:href="@{asset/css/styles/footer.css}">
+    <link rel="stylesheet" th:href="@{asset/css/styles/blog-post.css}">
+    <link rel="stylesheet" th:href="@{asset/css/styles/home.css}">
+    <link rel="stylesheet" th:href="@{asset/css/animate.css}">
+    <link rel="stylesheet" th:href="@{asset/css/media-query/nav.css}">
+    <link rel="stylesheet" th:href="@{asset/css/media-query/footer.css}">
+    <link rel="stylesheet" th:href="@{asset/css/media-query/blog-post.css}">
+    <link rel="stylesheet" th:href="@{asset/css/media-query/home.css}">
     <script src="https://kit.fontawesome.com/e2052a1ca7.js" crossorigin="anonymous"></script>
 
 </head>
@@ -193,8 +194,14 @@
         <!-- Footer -->
 
         <!-- Scripts -->
+    <!-- Footer -->
+    <footer th:insert="fragments.html :: footer"></footer>
+    <!-- Footer -->
 
-        <script src="../scripts/app.js"></script>
+    <a href="#back-top" class="go-top" style="display: inline;"><i class="fa fa-angle-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="asset/scripts/app.js"></script>
 </body>
 
 </html>
