@@ -29,22 +29,19 @@
      <form th:action="@{/posts/save}" method="post" th:object="${posts}" enctype="multipart/form-data">
         <h2>create a blog post</h2>
 
-         <div class="alert alert-warning" th:if="${error}" role="alert">
-             <span th:text="${errorMessage}"></span>
-         </div>
 
        <div class="mb-3">
            <label for="formFile" class="form-label">Cover Image</label>
-           <input class="form-control" th:field="*{imageFile}" type="file" id="formFile">
+           <input class="form-control" th:field="*{imageFile}" type="file" id="formFile" required>
          </div>
 
          <label for="text"></label>
-         <span class="alert alert-danger" th:if="${#fields.hasErrors('title')}"></span>
-         <input type="text" name="text" id="text" th:field="*{title}" placeholder="Enter title">
+
+         <input type="text" name="text" id="text" th:field="*{title}" placeholder="Enter title" required>
 
          <label for="message"></label>
-         <span class="alert alert-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}" cols="30" rows="10" ></span>
-         <textarea name="message" id="message" th:field="*{content}" cols="30" rows="10" placeholder="Enter content here">
+
+         <textarea name="message" id="message" th:field="*{content}" cols="30" rows="10" placeholder="Enter content here" required>
          </textarea>
 
         <input type="submit" value="Publish Post">
