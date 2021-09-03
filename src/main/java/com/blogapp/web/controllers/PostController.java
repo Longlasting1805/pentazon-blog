@@ -40,7 +40,7 @@ public class PostController {
 
 
     @PostMapping("/save")
-    public String savePost(@ModelAttribute @Valid PostDto postDto,BindingResult result, Model model) throws PostObjectIsNullException {
+    public String savePost(PostDto postDto) throws PostObjectIsNullException {
 
         log.info("Post dto received --> {}", postDto);
             postServiceImpl.savePost(postDto);
