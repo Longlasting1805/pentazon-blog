@@ -40,23 +40,10 @@ public class PostController {
 
 
     @PostMapping("/save")
-    public String savePost(@ModelAttribute @Valid PostDto postDto,BindingResult result, Model model) {
+    public String savePost(@ModelAttribute @Valid PostDto postDto,BindingResult result, Model model) throws PostObjectIsNullException {
 
         log.info("Post dto received --> {}", postDto);
-        if (result.hasErrors()){
-            return "create";
-        }
-        try {
             postServiceImpl.savePost(postDto);
-        } catch (PostObjectIsNullException e) {
-            log.info("Exception occured --> {}", e.getMessage());
-        } catch (DataIntegrityViolationException dx) {
-            log.info("constraint exception occurred --> {}", dx.getMessage());
-            model.addAttribute("error", dx.getMessage());
-            model.addAttribute("errorMessage", dx.getMessage());
-
-            return "create";
-        }
         return "redirect:/posts";
     }
 
