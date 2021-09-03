@@ -10,8 +10,11 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.naming.Binding;
 import javax.validation.Valid;
@@ -40,11 +43,16 @@ public class PostController {
 
 
     @PostMapping("/save")
-    public String savePost(PostDto postDto) throws PostObjectIsNullException {
+    public ModelAndView savePost(PostDto postDto) throws PostObjectIsNullException {
 
         log.info("Post dto received --> {}", postDto);
-            postServiceImpl.savePost(postDto);
-        return "redirect:/posts";
+        postServiceImpl.savePost(postDto);
+        ModelMap model = new ModelMap();
+        model.addAttribute("message", "next page");
+        return new ModelAndView(
+                new RedirectView("/posts", true),
+                model
+        );
     }
 
     @GetMapping("/fullPost/{postId}")
