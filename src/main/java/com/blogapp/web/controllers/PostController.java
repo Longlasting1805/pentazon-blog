@@ -60,7 +60,7 @@ public class PostController {
 
             return "create";
         }
-        return "redirect:/posts";
+        return "redirect:/posts/";
     }
     @ModelAttribute
     public void createPostModel(Model model){
@@ -68,9 +68,11 @@ public class PostController {
 
     }
 
-    @GetMapping("/info/{postId}")
+    @GetMapping("/fullPost/{postId}")
     public String getPostDDetails(@PathVariable("postId") Integer postId,Model model){
         log.info("Request for a post path --> {}", postId);
+        Post post=postServiceImpl.findById(postId);
+        model.addAttribute("post",post);
         return "post";
 
     }
